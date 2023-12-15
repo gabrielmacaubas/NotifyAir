@@ -19,7 +19,7 @@ public class Company {
         if (flight.getState().toString() == "Programado") {
             flights.remove(flight);
         } else {
-            System.out.println("Só é permitido remover vôos com o estado 'Programado'");
+            System.out.println("Só é permitido remover voos com o estado 'Programado'");
         }
     }
 
