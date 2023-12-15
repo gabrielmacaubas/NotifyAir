@@ -6,9 +6,9 @@ public abstract class Status {
         this.flight = flight;
     }
 
-    public abstract void subscribe(Subscriber subscriber);
+    public abstract Boolean subscribe(Subscriber subscriber);
 
-    public abstract void unsubscribe(Subscriber subscriber);
+    public abstract Boolean unsubscribe(Subscriber subscriber);
 
     public abstract void confirm();
 
@@ -16,6 +16,8 @@ public abstract class Status {
 
     public abstract void  delay();
 
+    public abstract void takeOff();
+    
     public abstract void changeGate(Number newGate);
 
     public abstract String toString();

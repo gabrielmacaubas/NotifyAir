@@ -6,13 +6,15 @@ public class Canceled extends Status {
     }
 
     @Override
-    public void subscribe(Subscriber subscriber) {
+    public Boolean subscribe(Subscriber subscriber) {
         System.out.println("Ação não permitida!");
+        return false;
     }
 
     @Override
-    public void unsubscribe(Subscriber subscriber) {
+    public Boolean unsubscribe(Subscriber subscriber) {
         System.out.println("Ação não permitida!");
+        return false;
     }
 
     @Override
@@ -31,13 +33,18 @@ public class Canceled extends Status {
     }
 
     @Override
+    public void takeOff() {
+        System.out.println("Ação não permitida!");
+    }
+
+    @Override
     public void changeGate(Number newGate) {
         System.out.println("Ação não permitida!");
     }
 
     @Override
     public String toString() {
-        return "Vôo " + this.flight.getCode() + " cancelado.";
+        return "Voo " + this.flight.getCode() + " cancelado.";
     }
     
 }

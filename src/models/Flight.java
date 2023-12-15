@@ -54,11 +54,15 @@ public class Flight {
     }
 
     public void subscribe(Subscriber subscriber) {
-        this.status.subscribe(subscriber);
+        if (this.status.subscribe(subscriber)) {
+            this.subscribers.add(subscriber);
+        };
     }
 
     public void unsubscribe(Subscriber subscriber) {
-        this.status.unsubscribe(subscriber);
+        if (this.status.unsubscribe(subscriber)) {
+            this.subscribers.remove(subscriber);
+        };
     }
     
     public void confirm() {
@@ -73,18 +77,22 @@ public class Flight {
         this.status.delay();
     }
 
+    public void takeOff() {
+        this.status.takeOff();
+    }
+
     public void changeGate(Number newGate) {
         this.status.changeGate(newGate);
     }
 
     public void showFlight() {
-        System.out.println("--------------------------------------------------");
-        System.out.println("Vôo " + this.code + " de " + this.origin.toString() + " para " + this.destination.toString() + ".");
+        System.out.println("\n--------------------------------------------------------------------------------");
+        System.out.println("Voo " + this.code + " de " + this.origin.toString() + " para " + this.destination.toString() + ".");
         System.out.println("Partida prevista para " + this.spectedDeparture + " e chegada prevista para " + this.spectedArrival + ".");
         System.out.println("Aeronave: " + this.aircraft.model + ".");
         System.out.println("Portão: " + this.gate + ".");
         System.out.println("Status: " + this.status.toString() + ".");
-        System.out.println("--------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------------------\n");
     }
 
 }

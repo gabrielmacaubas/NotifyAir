@@ -7,13 +7,15 @@ public class GateChanged extends Status {
     }
 
     @Override
-    public void subscribe(Subscriber subscriber) {
+    public Boolean subscribe(Subscriber subscriber) {
         System.out.println("Ação não permitida!");
+        return false;
     }
 
-    @Override
-    public void unsubscribe(Subscriber subscriber) {
+   @Override
+    public Boolean unsubscribe(Subscriber subscriber) {
         System.out.println("Ação não permitida!");
+        return false;
     }
 
     @Override
@@ -32,13 +34,18 @@ public class GateChanged extends Status {
     }
 
     @Override
+    public void takeOff() {
+        this.flight.setStatus(new TookOff(this.flight));
+    }
+
+    @Override
     public void changeGate(Number newGate) {
         this.flight.setStatus(new GateChanged(this.flight, newGate));
     }
 
     @Override
     public String toString() {
-        return "Vôo " + this.flight.getCode() + " com portão alterado para " + this.flight.gate + ".";
+        return "Voo " + this.flight.getCode() + " com portão alterado para " + this.flight.gate + ".";
     }
 
 }

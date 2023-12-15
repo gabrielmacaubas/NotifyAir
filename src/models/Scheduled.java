@@ -6,17 +6,18 @@ public class Scheduled extends Status {
     }
 
     @Override
-    public void subscribe(Subscriber subscriber) {
+    public Boolean subscribe(Subscriber subscriber) {
         if (this.flight.isFull()) {
-            System.out.println("Vôo lotado!");
+            System.out.println("Voo lotado!");
+            return false;
         } else {
-            this.flight.subscribe(subscriber);
+            return true;
         }
     }
 
     @Override
-    public void unsubscribe(Subscriber subscriber) {
-        this.flight.unsubscribe(subscriber);
+    public Boolean unsubscribe(Subscriber subscriber) {
+        return true;
     }
 
     @Override
@@ -31,6 +32,11 @@ public class Scheduled extends Status {
 
     @Override
     public void delay() {
+        System.out.println("Ação não permitida!");
+    }
+
+    @Override
+    public void takeOff() {
         System.out.println("Ação não permitida!");
     }
 

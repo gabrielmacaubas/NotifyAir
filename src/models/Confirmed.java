@@ -6,17 +6,18 @@ public class Confirmed extends Status {
     }
 
     @Override
-    public void subscribe(Subscriber subscriber) {
+    public Boolean subscribe(Subscriber subscriber) {
         if (this.flight.isFull()) {
-            System.out.println("Vôo lotado!");
+            System.out.println("Voo lotado!");
+            return false;
         } else {
-            this.flight.subscribe(subscriber);
+            return true;
         }
     }
 
     @Override
-    public void unsubscribe(Subscriber subscriber) {
-        this.flight.unsubscribe(subscriber);
+    public Boolean unsubscribe(Subscriber subscriber) {
+        return true;
     }
 
     @Override
@@ -35,13 +36,18 @@ public class Confirmed extends Status {
     }
 
     @Override
+    public void takeOff() {
+        this.flight.setStatus(new TookOff(this.flight));
+    }
+
+    @Override
     public void changeGate(Number newGate) {
         this.flight.setStatus(new GateChanged(this.flight, newGate));
     }
 
     @Override
     public String toString() {
-        return "Vôo " + this.flight.getCode() + " confirmado.";
+        return "Voo " + this.flight.getCode() + " confirmado.";
     }
 
 }
